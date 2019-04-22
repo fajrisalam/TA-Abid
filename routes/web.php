@@ -14,3 +14,23 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/masuk/{karyawan}/{arduino}', 'LogController@masuk');
+Route::get('/keluar/{karyawan}/{arduino}', 'LogController@keluar');
+
+// roles -> /roles
+// users -> /users
+// media -> /media
+// posts -> /posts
+// pages -> /pages
+//categories -> /categories
+// settings -> /settings
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
