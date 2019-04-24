@@ -4,8 +4,8 @@
     <div class="page-content">
         {{-- @include('voyager::alerts')
         @include('voyager::dimmers') --}}
-        <script src="{{URL::to('/js/p5')}}/p5.min.js"></script>
-        <script src="{{URL::to('/js/p5')}}/sketch.js "></script>
+        {{-- <script src="{{URL::to('/js/p5')}}/p5.min.js"></script>
+        <script src="{{URL::to('/js/p5')}}/sketch.js "></script> --}}
         {{-- <img src="{{ URL::to('/') }}/img/petaits.jpg" width="500px;"> --}}
     </div>
 @stop
