@@ -1,11 +1,11 @@
 let img;
 function setup() {
-	createCanvas(720, 400);
+	createCanvas(555, 700);
 	img = loadImage('../../img/petaits.jpg');
 }
 
 function draw() {
-	// image(img, 0, 200);
+	image(img, 0, 0);
   	// Displays the image at point (0, height/2) at half size
-  	image(img, 0, -300, img.width / 2, img.height / 2);
+  	// image(img, 0, 0, img.width / 2, img.height / 2);
 }
