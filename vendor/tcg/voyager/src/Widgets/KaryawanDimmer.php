@@ -33,7 +33,7 @@ class KaryawanDimmer extends BaseDimmer
                 'text' => __('voyager::dimmer.karyawan_link'),
                 'link' => route('voyager.karyawans.index'),
             ],
-            'image' => voyager_asset('images/widget-backgrounds/03.jpg'),
+            'image' => asset('img/dimmer/karyawan.jpg'),
         ]));
     }
 

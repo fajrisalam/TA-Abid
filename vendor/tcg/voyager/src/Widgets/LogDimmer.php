@@ -33,7 +33,7 @@ class LogDimmer extends BaseDimmer
                 'text' => __('voyager::dimmer.log_link'),
                 'link' => route('voyager.logs.index'),
             ],
-            'image' => voyager_asset('images/widget-backgrounds/03.jpg'),
+            'image' => asset('img/dimmer/log.jpg'),
         ]));
     }
 

@@ -38,7 +38,7 @@ class AbsenDimmer extends BaseDimmer
                 'text' => __('voyager::dimmer.absen_link'),
                 'link' => route('voyager.pages.index'),
             ],
-            'image' => voyager_asset('images/widget-backgrounds/03.jpg'),
+            'image' => asset('img/dimmer/absen.jpg'),
         ]));
     }
 
