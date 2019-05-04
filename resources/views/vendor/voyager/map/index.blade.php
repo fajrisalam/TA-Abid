@@ -20,8 +20,7 @@
         img = loadImage('{{asset('/img/icon4.png')}}');
     }
     function setup() {
-        var canvas = createCanvas(1249, 843);
-        var bunder = ellipse(50, 50, 80, 80);
+        var canvas = createCanvas(936, 631); 
 
         canvas.parent('#gambar');
         textAlign(CENTER, CENTER);
