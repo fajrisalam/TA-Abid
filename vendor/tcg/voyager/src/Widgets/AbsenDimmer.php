@@ -4,6 +4,9 @@ namespace TCG\Voyager\Widgets;
 
 use Illuminate\Support\Str;
 use TCG\Voyager\Facades\Voyager;
+use App\Karyawan;
+use App\Log;
+use DB;
 
 
 class AbsenDimmer extends BaseDimmer
@@ -21,7 +24,10 @@ class AbsenDimmer extends BaseDimmer
      */
     public function run()
     {
-        $count = Voyager::model('Page')->count();
+        $count = Log::whereDate('created_at', DB::raw('CURDATE()'))
+            ->where('id_arduino', 99)
+            ->where('status', 1)
+            ->distinct('id_karyawan')->count('id_karyawan');
         $string = trans_choice('voyager::dimmer.absen', $count);
 
         return view('voyager::dimmer', array_merge($this->config, [

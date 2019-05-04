@@ -11,4 +11,8 @@ class Karyawan extends Model
     public function arduino(){
         return $this->belongsTo('App\Arduino', 'id_arduino');
     }
+
+    public function log(){
+        return $this->hasMany('App\Log');
+    }
 }

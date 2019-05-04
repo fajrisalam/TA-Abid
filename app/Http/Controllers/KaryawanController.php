@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Karyawan;
 use Illuminate\Http\Request;
+use App\Log;
+use DB;
 
 class KaryawanController extends Controller
 {
@@ -25,6 +27,17 @@ class KaryawanController extends Controller
     public function create()
     {
         //
+    }
+    public function absen(){
+        $count = Log::whereDate('created_at', DB::raw('CURDATE()'))
+            ->where('id_arduino', 99)
+            ->where('status', 1)
+            ->distinct('id_karyawan')->count('id_karyawan');
+        // $count = DB::table('logs')->distinct('id_karyawan')
+        //     ->where('id_arduino', 99)
+        //     ->where('status', 1)
+        //     ->whereDate('created_at', DB::raw('CURDATE()'))->get('id_karyawan');
+        dd($count);
     }
 
     /**

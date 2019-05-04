@@ -5,6 +5,7 @@ namespace TCG\Voyager\Widgets;
 use Illuminate\Support\Str;
 use TCG\Voyager\Facades\Voyager;
 use App\Log;
+use DB;
 
 class LogDimmer extends BaseDimmer
 {
@@ -21,7 +22,7 @@ class LogDimmer extends BaseDimmer
      */
     public function run()
     {
-        $count = Log::count();
+        $count = Log::whereDate('created_at', DB::raw('CURDATE()'))->count();
         $string = trans_choice('voyager::dimmer.log', $count);
 
         return view('voyager::dimmer', array_merge($this->config, [
