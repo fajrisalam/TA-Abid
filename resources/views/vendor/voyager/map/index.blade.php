@@ -30,6 +30,8 @@
         @foreach($data as $d)
         image(img, {{$d->arduino->x}}, {{$d->arduino->y}}, 20, 20);
         @endforeach
+        textSize(20);
+        text('work', 500, 500);
     }
 </script>
 @stop

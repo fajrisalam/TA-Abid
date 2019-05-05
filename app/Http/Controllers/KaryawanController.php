@@ -29,15 +29,15 @@ class KaryawanController extends Controller
         //
     }
     public function absen(){
-        $count = Log::whereDate('created_at', DB::raw('CURDATE()'))
+        $data = Log::whereDate('created_at', DB::raw('CURDATE()'))
             ->where('id_arduino', 99)
             ->where('status', 1)
-            ->distinct('id_karyawan')->count('id_karyawan');
-        // $count = DB::table('logs')->distinct('id_karyawan')
-        //     ->where('id_arduino', 99)
-        //     ->where('status', 1)
-        //     ->whereDate('created_at', DB::raw('CURDATE()'))->get('id_karyawan');
-        dd($count);
+            ->orderBy('id_karyawan', 'asc')
+            ->get();
+        $c = 1;
+        $tmp = 0;
+        // dd($data);
+        return view('absen', compact(['data', 'c', 'tmp']));
     }
 
     /**

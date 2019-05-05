@@ -11,8 +11,10 @@ class MapController extends Controller
 {
     //
     public function index(){
-    	$data = Karyawan::all();
+    	$data['ar1'] = Karyawan::where('id_arduino', 1)->count();
+    	$data['ar2'] = Karyawan::where('id_arduino', 2)->count();
+    	$data['ar3'] = Karyawan::where('id_arduino', 3)->count();
     	// dd($data[0]->arduino);
- 		return view('vendor.voyager.map/index', compact('data'));
+ 		return view('vendor.voyager.map/index', $data);
     }
 }
