@@ -31,7 +31,9 @@
         image(img, {{$d->arduino->x}}, {{$d->arduino->y}}, 20, 20);
         @endforeach
         textSize(20);
-        text('work', 500, 500);
+        text('work', 510, 500);
+
+        $ar1->
     }
 </script>
 @stop
