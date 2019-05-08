@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Arduino;
 use Illuminate\Http\Request;
+use App\Karyawan;
 
 class ArduinoController extends Controller
 {
@@ -15,6 +16,14 @@ class ArduinoController extends Controller
     public function index()
     {
         //
+    }
+    public function plan($id_arduino){
+        $data = Karyawan::where('id_arduino', $id_arduino)->get();
+
+        $c    = 1;
+        $plan = Arduino::where('id', $id_arduino)->first();
+
+        return view('plan', compact(['c', 'data', 'plan']));
     }
 
     /**

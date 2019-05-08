@@ -12,4 +12,7 @@ class Log extends Model
     public function karyawan(){
         return $this->BelongsTo('App\Karyawan', 'id_karyawan');
     }
+    public function arduino(){
+        return $this->BelongsTo('App\Arduino', 'id_arduino');
+    }
 }

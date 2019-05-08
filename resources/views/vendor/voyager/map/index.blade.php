@@ -3,9 +3,9 @@
 @section('content')
     <div class="page-content">
         <div id="gambar"></div>
-        @foreach($data as $d)
-            {{$d->nama_karyawan}} {{$d->arduino->nama_ruang}} {{$d->arduino->x}} {{$d->arduino->y}}<br>
-        @endforeach
+        {{$ar1}}<br>
+        {{$ar2}}<br>
+        {{$ar3}}
         </div>
 @stop
 
@@ -16,7 +16,7 @@
     var img;
     function preload(){
         img_bg = loadImage('{{asset('/img/peta_new.jpeg')}}');
-        img = loadImage('{{asset('/img/icon4.png')}}');
+        img = loadImage('{{asset('/img/iconhehe.png')}}');
     }
     function setup() {
         var canvas = createCanvas(936, 631); 
@@ -27,13 +27,32 @@
 
     function draw() {
         background(img_bg);
-        @foreach($data as $d)
-        image(img, {{$d->arduino->x}}, {{$d->arduino->y}}, 20, 20);
-        @endforeach
-        textSize(20);
-        text('work', 510, 500);
+        
+        @if($ar1 > 0)
+        image(img, {{$p[0]->x}}, {{$p[0]->y}}, 20, 20);
+        textSize(15);
+        text({{$ar1}}, {{$p[0]->x +10}}, {{$p[0]->y +10}});
+        fill(255, 255, 255);
+        textStyle(BOLD);
+        @endif
 
-        $ar1->
+        @if($ar2 > 0)
+        image(img, {{$p[1]->x}}, {{$p[1]->y}}, 20, 20);
+        textSize(15);
+        text({{$ar2}}, {{$p[1]->x +10}}, {{$p[1]->y +10}});
+        fill(255, 255, 255);
+        textStyle(BOLD);
+        @endif
+
+        @if($ar3 > 0)
+        image(img, {{$p[2]->x}}, {{$p[2]->y}}, 20, 20);
+        textSize(15);
+        text({{$ar3}}, {{$p[2]->x +10}}, {{$p[2]->y +10}});
+        fill(255, 255, 255);
+        textStyle(BOLD);
+        @endif
+        
+
     }
 </script>
 @stop
