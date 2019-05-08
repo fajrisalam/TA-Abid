@@ -30,7 +30,7 @@ class KaryawanController extends Controller
     }
     public function absen(){
         $data = Log::whereDate('created_at', DB::raw('CURDATE()'))
-            ->where('id_arduino', 99)
+            ->where('id_arduino', 4)
             ->where('status', 1)
             ->orderBy('id_karyawan', 'asc')
             ->get();
