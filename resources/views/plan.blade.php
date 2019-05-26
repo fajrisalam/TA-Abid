@@ -3,8 +3,17 @@
 @section('page_header')
     <div class="container-fluid">
         <h1 class="page-title">
-            <i class="voyager-shop"></i> Plan {{$plan->nama_ruang}}
+            <i class="voyager-shop"></i> {{$plan->nama_ruang}}
         </h1>
+        @if($plan->id == 1)
+        <a href="{{asset('/img/plan_A.png')}}" class="btn btn-primary" style="position:absolute; right: 3%; top: 15%;" rel="no-follow" target="_blank">
+            <i class="voyager-warning"></i> Jalur Evakuasi 
+        </a>
+        @elseif($plan->id == 2)
+        <a href="{{asset('/img/plan_B.png')}}" class="btn btn-primary" style="position:absolute; right: 3%; top: 15%;" rel="no-follow" target="_blank">
+            <i class="voyager-warning"></i> Jalur Evakuasi
+        </a>
+        @endif
     </div>
 @stop
 
