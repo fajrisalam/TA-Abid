@@ -32,6 +32,17 @@ class LogController extends Controller
         $input = new Log($data);
         $input->status = $masuk;
         $input->save();
+
+        if($masuk = 'Masuk'){            
+            $update = Karyawan::where('rfid', $karyawan)
+                ->where('id_arduino', '!=', 4)
+                ->update(['id_arduino' => $arduino]);
+        }
+        else{
+            $update = Karyawan::where('rfid', $karyawan)
+                ->update(['id_arduino' => 0]);
+        }
+
     }
 
     /**
