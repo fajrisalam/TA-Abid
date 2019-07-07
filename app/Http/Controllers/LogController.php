@@ -20,29 +20,17 @@ class LogController extends Controller
     }
     public function masuk($karyawan, $arduino){
         $now = Carbon::now()->toDateTimeString();
-        // dd($now);
-        // $input = Log::create('id_karyawan' => $karyawan);
-        // $input = new Log();
-        // $input->id_karyawan = $karyawan;
-        // $input->id_arduino = $arduino;
-        // $input->status = 1;
-        // $input->save();
-
+        $last = Log::where('created_at', '>=', date('Y-m-d').' 00:00:00')
+            ->where('id_karyawan', $karyawan)->where('id_arduino', $arduino)->get()->last();
+        
+        if(!$last) $masuk = 'Masuk';
+        else if($last->status == 'Masuk') $masuk = 'Keluar';
+        else $masuk = 'Masuk';
+        // dd($last->status);
         $data['id_karyawan'] = $karyawan;
         $data['id_arduino'] = $arduino;
         $input = new Log($data);
-        $input->status = 1;
-        $input->save();
-    }
-
-    public function keluar($karyawan, $arduino){
-        $now = Carbon::now()->toDateTimeString();
-        // dd($now);
-
-        $input = new Log();
-        $input->id_karyawan = $karyawan;
-        $input->id_arduino = $arduino;
-        $input->status = 0;
+        $input->status = $masuk;
         $input->save();
     }
 
