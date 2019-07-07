@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Log;
+use App\Karyawan;
 use Illuminate\Http\Request;
 use DB;
 use Carbon\Carbon;
