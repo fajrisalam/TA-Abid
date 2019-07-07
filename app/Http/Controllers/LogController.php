@@ -23,6 +23,7 @@ class LogController extends Controller
         $now = Carbon::now()->toDateTimeString();
         $last = Log::where('created_at', '>=', date('Y-m-d').' 00:00:00')
             ->where('id_karyawan', $karyawan)->where('id_arduino', $arduino)->get()->last();
+        // $karyawan = Karyawan::where('rfid', $karyawan)->get()->last();
         
         if(!$last) $masuk = 'Masuk';
         else if($last->status == 'Masuk') $masuk = 'Keluar';
@@ -34,15 +35,16 @@ class LogController extends Controller
         $input->status = $masuk;
         $input->save();
 
-        if($masuk = 'Masuk'){            
+        if($masuk == 'Masuk'){            
             $update = Karyawan::where('rfid', $karyawan)
-                ->where('id_arduino', '!=', 4)
                 ->update(['id_arduino' => $arduino]);
+                // ->where('id_arduino', '!=', 4)
         }
         else{
             $update = Karyawan::where('rfid', $karyawan)
                 ->update(['id_arduino' => 0]);
         }
+        // dd($kntl);
 
     }
 
