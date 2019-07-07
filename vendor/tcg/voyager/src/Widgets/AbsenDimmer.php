@@ -26,7 +26,7 @@ class AbsenDimmer extends BaseDimmer
     {
         $count = Log::whereDate('created_at', DB::raw('CURDATE()'))
             ->where('id_arduino', 4)
-            ->where('status', 1)
+            ->where('status', 'Masuk')
             ->distinct('id_karyawan')->count('id_karyawan');
         $string = trans_choice('voyager::dimmer.absen', $count);
 

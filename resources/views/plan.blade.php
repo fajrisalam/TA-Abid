@@ -37,7 +37,7 @@
                                     <tr>
                                         <td>{{$c++}}</td>
                                         <td>{{ $d->nama_karyawan }}</td>
-                                        <td>{{ $d->jabatan }}</td>
+                                        <td>{{ $d->status }}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>

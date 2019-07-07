@@ -27,15 +27,15 @@
                                 <tbody>
                                     @foreach($karyawan as $d)
                                     <?php 
-                                        if($d->id_karyawan == $tmp){
+                                        if((string)$d->id_karyawan == (string)$tmp){
                                             continue;
                                         } 
                                     ?>
                                     <tr>
                                         <td>{{$c++}}</td>
-                                        <!-- <td>{{ $d->karyawan->nama_karyawan }}</td> --><td>data</td>
-                                        <!-- <td>{{ $d->karyawan->jabatan }}</td> --><td>data</td>
-                                        <!-- <td>{{ $d->created_at }}</td> --><td>data</td>
+                                        <td>{{ $d->karyawan->nama_karyawan }}</td>
+                                        <td>{{ $d->karyawan->status }}</td>
+                                        <td>{{ $d->created_at }}</td>
                                     </tr>
                                     <?php 
                                         $tmp = $d->id_karyawan;
