@@ -40,6 +40,16 @@ class KaryawanController extends Controller
         // dd($data);
         return view('absen', $data);
     }
+    public function tambahkaryawan($rfid){
+        $exist = Karyawan::where('rfid', $rfid)->get()->first();
+        if(!$exist){
+            $last = Karyawan::whereNotNull('rfid')->get()->last()->id + 1;
+            $update = Karyawan::find($last);
+            $update->rfid = $rfid;
+            $update->save();
+        }
+        else echo 'hehe';
+    }
 
     /**
      * Store a newly created resource in storage.

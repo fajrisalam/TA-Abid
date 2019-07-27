@@ -16,6 +16,8 @@ Route::get('/', function () {
 });
 Route::get('/masuk/{karyawan}/{arduino}', 'LogController@masuk');
 Route::get('/keluar/{karyawan}/{arduino}', 'LogController@keluar');
+Route::get('/daftar/{rfid}', 'KaryawanController@tambahkaryawan');
+Route::get('/cekpintu', 'ArduinoController@masuk');
 
 // roles -> /roles
 // users -> /users

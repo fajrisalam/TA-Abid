@@ -25,6 +25,15 @@ class ArduinoController extends Controller
 
         return view('plan', compact(['c', 'data', 'plan']));
     }
+    public function masuk(){
+        $karyawan = Karyawan::whereNotNull('rfid')->get();
+        $i = 0;
+        foreach($karyawan as $k){
+            $data[$i++] = $k->rfid;
+        }
+        // dd($data);
+        return $data;
+    }
 
     /**
      * Show the form for creating a new resource.
