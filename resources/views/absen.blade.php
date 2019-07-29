@@ -30,11 +30,14 @@
                                         if((string)$d->id_karyawan == (string)$tmp){
                                             continue;
                                         } 
+                                        if(!$d->karyawan[0]){
+                                            continue;
+                                        }
                                     ?>
                                     <tr>
                                         <td>{{$c++}}</td>
-                                        <td>{{ $d->karyawan->nama_karyawan }}</td>
-                                        <td>{{ $d->karyawan->status }}</td>
+                                        <td>{{ $d->karyawan[0]->nama_karyawan }}</td>
+                                        <td>{{ $d->karyawan[0]->status }}</td>
                                         <td>{{ $d->created_at }}</td>
                                     </tr>
                                     <?php 

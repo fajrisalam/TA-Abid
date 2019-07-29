@@ -12,8 +12,7 @@ const int Relay = 14;
 MFRC522 rfid(SS_PIN, RST_PIN);
 MFRC522::MIFARE_Key key;
 
-char *myStrings[] = {"A3356F1A", "C9D29255", "5917DB56", "79AEC555", "A9B59155","83D93A2E","39C1D156","4934CE56","09E5C356"
-                    };
+char *myStrings[] = {"A3356F1A", "C9D29255", "5917DB56", "79AEC555", "A9B59155","83D93A2E","39C1D156","4934CE56","09E5C356"};
 String strID;
 const char* ssid = "kambing"; //Ini ganti SSID (Nama Wifi yang samean koneksan sama hotspot
 const char* password = "12345678"; //ini password wifi samean 
@@ -49,8 +48,12 @@ void setup() {
 
  
 void loop() {
-  if (!rfid.PICC_IsNewCardPresent() || !rfid.PICC_ReadCardSerial())
+
+  
+  
+if (!rfid.PICC_IsNewCardPresent() || !rfid.PICC_ReadCardSerial())
     return;
+ 
   // Serial.print(F("PICC type: "));
   MFRC522::PICC_Type piccType = rfid.PICC_GetType(rfid.uid.sak);
   // Serial.println(rfid.PICC_GetTypeName(piccType));
@@ -59,45 +62,73 @@ void loop() {
   if (piccType != MFRC522::PICC_TYPE_MIFARE_MINI &&
       piccType != MFRC522::PICC_TYPE_MIFARE_1K &&
       piccType != MFRC522::PICC_TYPE_MIFARE_4K) {
-        Serial.println(F("Your tag is not of type MIFARE Classic."));
-        return;
+    Serial.println(F("Your tag is not of type MIFARE Classic."));
+    return;
   }
-   
-    //id kartu dan yang akan dikirim ke database
+ 
+  //id kartu dan yang akan dikirim ke database
   strID = "";
   for (byte i = 0; i < 4; i++) {
-      strID +=
+//      digitalWrite (Buzzer, HIGH) ;// Buzzer On
+//      delay (100) ;// Delay 1ms 
+//      digitalWrite (Buzzer, LOW) ;// Buzzer Off
+     // delay (400) ;// delay 1ms
+    strID +=
       (rfid.uid.uidByte[i] < 0x10 ? "0" : "") +
       String(rfid.uid.uidByte[i], HEX) +
       (i != 3 ? "" : "");
      // 
   }
+  char *myStrings[] = 'hehe';
   strID.toUpperCase();
   Serial.print("Kartu ID Anda : ");
   Serial.println(strID);
-  digitalWrite (Buzzer, LOW) ;// Buzzer On
-  delay (2000) ;// Delay 1ms 
-  digitalWrite (Buzzer, HIGH) ;
-  delay (500) ;
-  digitalWrite (Buzzer, LOW) ;// Buzzer On
-  delay (300) ;// Delay 1ms 
-  
-  digitalWrite (Relay, LOW) ;// Buzzer On
-  delay (1000) ;// Delay 1ms 
-  digitalWrite (Relay, HIGH) ;// Buzzer On
-  delay (2000) ;// Delay 1ms
-  digitalWrite (Relay, LOW) ;// Buzzer On
-  delay (1000) ;// Delay 1ms 
-  koneksi_database();
-  delay(5000);
-  delay(500);
+  for (int i = 0; i < 6; i++) {
+    if( strID == myStrings[i]){
+      digitalWrite (Buzzer, LOW) ;// Buzzer On
+      delay (2000) ;// Delay 1ms 
+      digitalWrite (Buzzer, HIGH) ;
+      delay (500) ;
+      digitalWrite (Buzzer, LOW) ;// Buzzer On
+      delay (300) ;// Delay 1ms 
+      
+      digitalWrite (Relay, LOW) ;// Buzzer On
+      delay (1000) ;// Delay 1ms 
+      digitalWrite (Relay, HIGH) ;// Buzzer On
+      delay (2000) ;// Delay 1ms
+      digitalWrite (Relay, LOW) ;// Buzzer On
+      delay (1000) ;// Delay 1ms 
+      koneksi_database();
+      delay(5000);
+    }
+    delay(500);
+  }
 }
 
 void koneksi_database(){
   if ((WiFi.status() == WL_CONNECTED)) { //Check the current connection status
  
+HTTPClient http;
+String url = get_status_url+strID+"/3";
+http.begin(url);
+int httpCode = http.GET();                                        //Make the request
+   if (httpCode > 0) { //Check for the returning code
+        String payload = http.getString();
+        Serial.println(httpCode);
+       Serial.println(payload);
+      }
+ 
+    else {
+          Serial.println("Error on HTTP request");
+        }
+    http.end(); //Free the resources
+  }
+}
+
+void return_json(){
+  if ((WiFi.status() == WL_CONNECTED)) { //Check the current connection status
   HTTPClient http;
-  String url = get_status_url+strID;
+  String url = "http://157.230.42.44:8000/cekpintu";
   http.begin(url);
   int httpCode = http.GET();                                        //Make the request
      if (httpCode > 0) { //Check for the returning code
@@ -110,5 +141,8 @@ void koneksi_database(){
             Serial.println("Error on HTTP request");
           }
       http.end(); //Free the resources
-    }
   }
+}
+
+
+
