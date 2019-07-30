@@ -36,7 +36,7 @@ class AbsenDimmer extends BaseDimmer
             'text'   => __('voyager::dimmer.absen_text', ['count' => $count, 'string' => Str::lower($string)]),
             'button' => [
                 'text' => __('voyager::dimmer.absen_link'),
-                'link' => route('voyager.pages.index'),
+                'link' => route('hehe'), 
             ],
             'image' => asset('img/dimmer/absen.jpg'),
         ]));

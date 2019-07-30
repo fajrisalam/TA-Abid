@@ -36,6 +36,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['prefix' => 'admin'], function () {
 	Route::get('/map', 'MapController@index')->name('voyager.map.index');
 	Route::get('/plan/{id}', 'ArduinoController@plan');
-	Route::get('/kehadiran', 'KaryawanController@absen');
+	Route::get('/kehadiran', 'KaryawanController@absen')->name('hehe');
     Voyager::routes();
 });

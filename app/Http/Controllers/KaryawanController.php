@@ -32,12 +32,12 @@ class KaryawanController extends Controller
         $data['karyawan'] = Log::whereDate('created_at', DB::raw('CURDATE()'))
             ->where('id_arduino', 1)
             ->where('status', 'Masuk')
-            ->orderBy('created_at', 'asc')
             ->orderBy('id_karyawan', 'asc')
+            ->orderBy('created_at', 'asc')
             ->get();
         $data['c'] = 1;
         $data['tmp'] = 0;
-        // dd($data);
+        // dd($data['karyawan'][0]->karyawan);
         return view('absen', $data);
     }
     public function tambahkaryawan($rfid){
